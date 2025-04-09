@@ -1,0 +1,123 @@
+<form class="addMovie__form">
+  <h2 class="form__title">Ajouter un film</h2>
+
+  <div class="form">
+    <div class="form__group">
+      <div class="input__container">
+        <label for="name">Titre du film</label>
+        <input required type="text" name="name" placeholder="Interstellar" />
+      </div>
+
+      <div class="form__group">
+        <div class="input__container">
+          <label for="year">Année de sortie</label>
+          <input
+            required
+            type="number"
+            name="year"
+            placeholder="2014"
+            min="1900"
+            max="2100"
+          />
+        </div>
+
+        <div class="input__container">
+          <label for="length">Durée en minutes</label>
+          <input
+            required
+            type="number"
+            name="length"
+            placeholder="169"
+            min="1"
+            max="300"
+          />
+        </div>
+      </div>
+
+      <div class="form__group form__group--full">
+        <div class="input__container">
+          <label for="description">Description du film</label>
+          <textarea
+            required
+            name="description"
+            placeholder="Un groupe d'explorateurs voyage à travers un trou de ver pour sauver l'humanité..."
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="input__container">
+        <label for="director">Nom du réalisateur</label>
+        <input
+          required
+          type="text"
+          name="director"
+          placeholder="Christopher Nolan"
+          pattern="[^0-9]*"
+          title="Numbers are not allowed"
+        />
+      </div>
+    </div>
+
+    <div class="form__group">
+      <div class="input__container">
+        <label for="id_category">Catégorie</label>
+        <select required class="category__container" name="id_category">
+          <option value="" disabled selected>Sélectionner une catégorie</option>
+          <option value="1">Action</option>
+          <option value="2">Comédie</option>
+          <option value="3">Drame</option>
+          <option value="4">Science-fiction</option>
+          <option value="5">Animation</option>
+          <option value="6">Thriller</option>
+          <option value="7">Horreur</option>
+          <option value="8">Aventure</option>
+          <option value="9">Fantaisie</option>
+          <option value="10">Documentaire</option>
+        </select>
+      </div>
+
+      <div class="form__group">
+        <div class="input__container">
+          <label for="image">Nom du fichier image</label>
+          <input
+            required
+            type="text"
+            name="image"
+            placeholder="interstellar.jpg"
+          />
+        </div>
+
+        <div class="input__container">
+          <label for="trailer">URL du trailer</label>
+          <input
+            required
+            type="text"
+            name="trailer"
+            placeholder="https://www.youtube.com/watch?v=..."
+          />
+        </div>
+      </div>
+
+      <div class="input__container">
+        <label for="min_age">Âge requis</label>
+        <input
+          required
+          type="number"
+          name="min_age"
+          placeholder="12"
+          min="5"
+          max="18"
+        />
+      </div>
+    </div>
+
+    <div class="form__group form__group--full">
+      <input
+        onclick="{{handler}}"
+        type="button"
+        value="Ajouter"
+        name="todo"
+      />
+    </div>
+  </div>
+</form>

@@ -20,8 +20,62 @@
  */
 require("model.php");
 
-
-function readMoviesController(){
-    $movies = getAllMovies();
+function readMovieController(){
+    $movies = getMovie();
     return $movies;
+}
+
+function readMovieDetailController() {
+    $id = $_REQUEST['id'];
+    $movie = getMovieDetail($id);
+
+    if ($movie != 0) {
+        return $movie;
+
+    } else {
+        return "Erreur lors de la récupération du film avec l'identifiant $id";
+    }
+}
+
+function readCategoriesController() {
+    $categories = getCategories();
+
+    if ($categories != 0) {
+        return $categories;
+
+    } else {
+        return "Erreur lors de la récupération des catégories";
+    }
+}
+
+function readMovieByCategoryController() {
+    $category = $_REQUEST['category'];
+    $movies = getMovieByCategory($category);
+
+    if ($movies != 0) {
+        return $movies;
+
+    } else {
+        return "Erreur lors de la récupération des films de la catégorie $category";
+    }
+}
+
+function addMovieController() {
+  $name = $_REQUEST['name'];
+  $year = $_REQUEST['year'];
+  $length = $_REQUEST['length'];
+  $description = $_REQUEST['description'];
+  $director = $_REQUEST['director'];
+  $id_category = $_REQUEST['id_category'];
+  $image = $_REQUEST['image'];
+  $trailer = $_REQUEST['trailer'];
+  $min_age = $_REQUEST['min_age'];
+  $ok = addMovie($name, $year, $length, $description, $director, $id_category, $image, $trailer, $min_age);
+
+  if ($ok != 0) {
+      return "Le film $name a bien été ajouté";
+
+  } else {
+      return "Mauvais paramètres lors de l'ajout du film $name<br>Erreur de connexion à la BDD";
+  }
 }

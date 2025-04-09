@@ -5,3 +5,10 @@
 @import "./utilities.css" layer(utilities);
 
 @import "../component/Log/style.css" layer(components);
+@import "../component/AddMovie/style.css" layer(components);
+
+
+body {
+  background-color: var(--color-bg);
+  font-family: var(--ff-primary);
+}

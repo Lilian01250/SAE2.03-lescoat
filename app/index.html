@@ -14,10 +14,13 @@
 
     <script type="module">
       import { NavBar } from "./component/NavBar/script.js";
+      import { CardMovie } from "./component/CardMovie/script.js";
+      import { MovieDetail } from "./component/MovieDetail/script.js";
+      import { MovieCategory } from "./component/MovieCategory/script.js";
+      import { DataMovie } from "./data/dataMovie.js";
+      
 
       // Controleur
-      // Rappel, écrire window.C plutôt que let C est nécessaire pour tester depuis la console du navigateur
-      // Une fois l'application terminée, on pourrait remettre let C.
       window.C = {};
 
       C.handlerAbout = function () {
@@ -26,27 +29,67 @@
         );
       };
 
+
+      C.handlerDetail = async function (id) {
+      let movie = await DataMovie.requestMovieDetail(id);
+      if (movie.length == 0){
+        movie = [
+          {name: 'Soon...', category: 'Soon...', img: 'no_image.png', trailer: 'Soon...', description: 'Soon...', duration: 'Soon...', year: 'Soon...', views: 'Soon...', realisator: 'Soon...'}
+        ];
+      }
+      
+      V.renderMovieDetail(movie);
+    };
+
       C.start = function () {
         V.renderNavBar("C.handlerAbout()");
+
+        C.getMovieByCategories();
       };
 
-      // Vue (contient tout ce qui est relatif à l'affichage)
-      window.V = {};
+      C.getMovie = async function(){
+      let data = await DataMovie.request();
+      if (data.length == 0){
+        data = [
+          {film: 'Soon...', category: 'Soon...', img: 'Soon...'}
+        ];
+      }
+      V.renderCardMovie(data);
+    }
 
-      /**
-       * V.renderNavBar
-       *
-       * Cette fonction est responsable de l'affichage de la barre de navigation (NavBar).
-       * Elle sélectionne l'élément HTML avec l'ID "header" et y insère le contenu
-       * formaté par le composant NavBar.
-       */
-      V.renderNavBar = function (hAbout) {
-        let header = document.querySelector("#header");
-        header.innerHTML = NavBar.format(hAbout);
-      };
 
-      C.start(); // Démarre l'application
+    C.getMovieByCategories = async function(){
+      let categories = await DataMovie.requestCategory();
+      let html = await MovieCategory.formatMany(categories); 
+      V.renderMovieByCategories(html);
+    }
+
+
+    // Vue (contient tout ce qui est relatif à l'affichage)
+    window.V = {};
+
+    V.renderNavBar = function (hAbout) {
+      let header = document.querySelector("#header");
+      header.innerHTML = NavBar.format(hAbout);
+    };
+
+    V.renderCardMovie = function (data) {
+      let cards = document.querySelector("#card__container");
+      cards.innerHTML = CardMovie.formatMany(data);
+    };
+
+    V.renderMovieDetail = function (movie) {
+      let content = document.querySelector("#content");
+      content.innerHTML = MovieDetail.format(movie);
+    };
+
+    V.renderMovieByCategories = function (html) {
+      let cards = document.querySelector("#card__container");
+      cards.innerHTML = html;
+    };
+
+      C.start();
     </script>
   </body>
 </html>
-<script type="module"></script>
+<!-- <script src="https://kit.fontawesome.com/ebaaea744f.js" crossorigin="anonymous"></script> -->

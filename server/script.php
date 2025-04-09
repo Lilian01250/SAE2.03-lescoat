@@ -19,8 +19,10 @@
 /**
  * Inclusion du fichier controller.php.
  * 
- * Il contient les fonctions nécessaires pour traiter chaque type de requête
- * et définir la réponnse à renvoyer au client.
+ * Ce fichier est requis pour que le script puisse fonctionner correctement.
+ * Un erreur se produirait si le fichier n'était pas trouvé.
+ * Il contient les fonctions nécessaires pour traiter les 
+ * requêtes et les réponses du serveur en retour.
  */
 require("controller.php");
 
@@ -53,7 +55,23 @@ if ( isset($_REQUEST['todo']) ){
   switch($todo){
 
     case 'readmovies':
-      $data = readMoviesController();
+      $data= readMovieController();
+      break;
+
+    case 'addmovies':
+      $data= addMovieController();
+      break;
+
+    case 'readmoviedetail':
+      $data= readMovieDetailController();
+      break;
+
+    case 'readcategories':
+      $data= readCategoriesController();
+      break;
+
+    case 'readmoviesbycategory':
+      $data= readMovieByCategoryController();
       break;
 
 
@@ -87,7 +105,10 @@ if ( isset($_REQUEST['todo']) ){
   http_response_code(200); // 200 == "OK"
   exit();
 
-   
+    /*
+
+  
+*/
 } // fin de if ( isset($_REQUEST['todo']) )
 
 

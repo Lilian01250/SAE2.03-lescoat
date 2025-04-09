@@ -5,3 +5,16 @@
 @import "./utilities.css" layer(utilities);
 
 @import "../component/NavBar/style.css" layer(components);
+@import "../component/CardMovie/style.css" layer(components);
+@import "../component/MovieDetail/style.css" layer(components);
+@import "../component/MovieCategory/style.css" layer(components);
+
+
+body{
+  font-family: Arial, sans-serif;
+  background-color: var(--color-bg);
+}
+
+/* html {
+  scroll-behavior: smooth;
+} */

@@ -1,5 +1,3 @@
-
-
 let templateFile = await fetch('./component/Log/template.html');
 let template = await templateFile.text();
 
@@ -8,9 +6,9 @@ let templateLiLast = "<li class='last'>[{{time}}] {{txt}}<span class='clignotant
 
 let Log = {};
 
-let history = []; // non exporté, interne au module du composant (encapsulation)
+let history = [];
 
-let add = function(txt){ // non exporté, interne au module du composant (encapsulation)
+let add = function(txt){
     let d = new Date();
     let h = d.getHours();
     let m = d.getMinutes();
@@ -20,7 +18,7 @@ let add = function(txt){ // non exporté, interne au module du composant (encaps
     history.push(log);
 }
 
-let formatHistory= function(){ // non exporté, interne au module du composant (encapsulation)
+let formatHistory= function(){
     let html = "";
     if (history.length == 0) return html;
     for (let i=0; i<history.length-1; i++){ 
